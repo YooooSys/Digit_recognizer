@@ -5,7 +5,9 @@ import os
 app = Flask(__name__)
 
 # Ensure the uploads directory exists
-UPLOAD_FOLDER = 'uploads'
+uploadFolder = 'uploads'
+
+os.makedirs(uploadFolder, exist_ok=True)
 
 @app.route('/')
 def index():
@@ -46,7 +48,8 @@ def upload_image():
         user_ip = request.remote_addr
 
         # Save the file to the user's directory
-        file_path = os.path.join(UPLOAD_FOLDER, f"({user_ip}).jpg")
+        file_path = os.path.join(uploadFolder, f"({user_ip}).jpg")
+
         file.save(file_path)
         return jsonify({'message': f'File uploaded successfully'}), 200
 
