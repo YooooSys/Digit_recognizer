@@ -53,5 +53,8 @@ def upload_image():
         file.save(file_path)
         return jsonify({'message': f'File uploaded successfully'}), 200
 
+def handler(event, context):
+    return app(event, context)
+
 if __name__ == '__main__':
     app.run(debug=True)
